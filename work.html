@@ -41,14 +41,13 @@ main { padding:0 clamp(1rem, 5vw, 4rem) 4rem; }
 .section-head { display:grid; grid-template-columns:minmax(0, .9fr) minmax(18rem, .7fr); gap:2rem; align-items:end; margin-bottom:1.25rem; }
 .section-head h2 { margin-top:.35rem; font-family:var(--display); font-size:clamp(3rem, 7vw, 5.5rem); line-height:.9; text-transform:uppercase; letter-spacing:0; }
 .section-head p { color:var(--muted); max-width:32rem; }
-.video-grid { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1rem; }
-.video-card { overflow:hidden; border:1px solid var(--line); border-radius:8px; background:var(--panel); }
-.video-card.horizontal { grid-column:span 2; }
+.video-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 280px)); justify-content:start; gap:1.15rem; }
+.video-card { overflow:hidden; width:100%; max-width:280px; border:1px solid var(--line); border-radius:8px; background:var(--panel); }
+.video-card.horizontal { grid-column:span 2; max-width:580px; }
+.video-frame { position:relative; aspect-ratio:9/16; background:#050505; }
 .video-card.horizontal .video-frame { aspect-ratio:16/9; }
-.video-frame { position:relative; aspect-ratio:9/16; background:linear-gradient(135deg, #171717, #080808); }
-.video-frame::before { content:"PLAY"; position:absolute; left:1rem; top:1rem; z-index:0; color:rgba(244,241,234,.16); font-family:var(--display); font-size:3rem; line-height:1; }
-.video-frame video { position:relative; z-index:1; display:block; width:100%; height:100%; object-fit:contain; background:#050505; }
-.video-info { padding:1rem; min-height:5.75rem; }
+.video-frame video { display:block; width:100%; height:100%; object-fit:contain; background:#050505; }
+.video-info { padding:.75rem .85rem .85rem; min-height:auto; background:#101010; }
 .video-info p { margin-top:.55rem; color:var(--muted); font-size:.9rem; }
 .music-link { margin:4rem 0 0; padding:1.25rem; border:1px solid var(--line); border-radius:8px; background:linear-gradient(135deg, rgba(255,90,31,.16), rgba(37,230,209,.08)); display:flex; align-items:center; justify-content:space-between; gap:1rem; }
 .music-link h2 { font-family:var(--display); font-size:2.4rem; line-height:1; text-transform:uppercase; }
@@ -57,14 +56,14 @@ main { padding:0 clamp(1rem, 5vw, 4rem) 4rem; }
 .about-stats .stat { min-height:11rem; }
 .about-stats .stat p { margin-top:.85rem; color:var(--soft); font-size:.95rem; line-height:1.55; text-transform:none; }
 footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; padding:1.5rem clamp(1rem, 5vw, 4rem); color:var(--muted); font-family:var(--mono); font-size:.72rem; text-transform:uppercase; border-top:1px solid var(--line); }
-@media (max-width: 980px) { .hero-inner, .section-head { grid-template-columns:1fr; } .video-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 620px) { .video-card.horizontal { grid-column:auto; } .nav { align-items:flex-start; } .nav-links { display:none; } .hero { min-height:auto; padding-top:5rem; } .stats, .video-grid { grid-template-columns:1fr; } .music-link { display:grid; } .featured-music { margin:0 1rem; transform:none; } .button { width:100%; } }
+@media (max-width: 980px) { .hero-inner, .section-head { grid-template-columns:1fr; } .video-grid { grid-template-columns:repeat(2, minmax(220px, 280px)); } .video-card.horizontal { grid-column:span 2; } }
+@media (max-width: 620px) { .video-card, .video-card.horizontal { grid-column:auto; max-width:min(100%, 330px); } .nav { align-items:flex-start; } .nav-links { display:none; } .hero { min-height:auto; padding-top:5rem; } .stats, .video-grid { grid-template-columns:1fr; } .video-grid { justify-content:start; justify-items:start; } .music-link { display:grid; } .featured-music { margin:0 1rem; transform:none; } .button { width:100%; } }
 </style>
 </head>
 <body>
 <nav class="nav">
   <a class="brand" href="index.html"><span class="brand-mark">JS</span><span>Jagjeet Singh</span></a>
-  <div class="nav-links"><a href="index.html#work">Home Work</a><a href="#top">Library</a><a href="index.html#contact">Contact</a></div>
+  <div class="nav-links"><a href="index.html">Home</a><a href="#stage-shows">Portfolio</a><a href="index.html#contact">Contact</a></div>
 </nav>
 <header class="hero" id="top">
   <div class="hero-inner">
@@ -72,7 +71,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
       <span class="eyebrow">Local work library</span>
       <h1>Portfolio<br><span>Works</span></h1>
       <p class="hero-copy">I am Jagjeet Singh, a video editor and VFX artist from New Delhi. I edit music videos, reels, VSL ads, event highlights, stage shows, AI videos, and social media content with strong pacing, clean sync, and a polished final look.</p>
-      <div class="hero-actions"><a class="button primary" href="https://youtu.be/Or7A11-Yt1w?si=D9_qc2FKpKlCfXap" target="_blank">Watch Music Video</a><a class="button" href="#achor-reel-shoot-and-edit">Browse Editing Work</a></div>
+      <div class="hero-actions"><a class="button primary" href="https://youtu.be/Or7A11-Yt1w?si=D9_qc2FKpKlCfXap" target="_blank">Watch Music Video</a><a class="button" href="#stage-shows">Browse Editing Work</a></div>
     </div>
     <div class="stats about-stats">
       <div class="stat"><span class="stat-label">Music videos</span><p>Beat sync, emotion, rhythm cuts, color, motion graphics, and a clean final finish.</p></div>
@@ -102,15 +101,15 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
 <section class="portfolio-section" id="stage-shows">
       <div class="section-head">
         <div>
-          <span class="eyebrow">05 / Stage Shows</span>
+          <span class="eyebrow">01 / Stage Shows</span>
           <h2>Stage Shows</h2>
         </div>
         <p>Stage and live-show clips with performance energy and clean highlight pacing.</p>
       </div>
       <div class="video-grid">
-        <article class="video-card horizontal">
+        <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/stage-shows/01-stage-show-01.svg" src="assets/portfolio/stage-shows/01-aqmbbzwu3z-mrqms5yjxwk-8zmldslf9lw5vcn0fwdwgzof8esxmkoq4adk7tpop9lbfv0pjnpfvbz-i3v6yhxr6ipl-ccvepbspxpy.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/stage-shows/01-aqmbbzwu3z-mrqms5yjxwk-8zmldslf9lw5vcn0fwdwgzof8esxmkoq4adk7tpop9lbfv0pjnpfvbz-i3v6yhxr6ipl-ccvepbspxpy.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Stage Shows / 01</span>
@@ -118,7 +117,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/stage-shows/02-stage-show-02.svg" src="assets/portfolio/stage-shows/02-aqmowkmnbc3y38ru11bjb5o66c6mi7nbhkthr18d-hsti-1awbtrmxasrs0tpbmdyepixkbi6ecybnykrlaonhgjoxhfnphra4j5hcs.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/stage-shows/02-aqmowkmnbc3y38ru11bjb5o66c6mi7nbhkthr18d-hsti-1awbtrmxasrs0tpbmdyepixkbi6ecybnykrlaonhgjoxhfnphra4j5hcs.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Stage Shows / 02</span>
@@ -126,7 +125,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/stage-shows/03-stage-show-03.svg" src="assets/portfolio/stage-shows/03-aqpmoejcp6lf0wk2uzblhvc9xbhjyrsxdqwgett-tbsgg8owkkhnffwq2mfactt2hcup8kgbcn7a2znugmnflullguiaqs6gwwfmqw8.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/stage-shows/03-aqpmoejcp6lf0wk2uzblhvc9xbhjyrsxdqwgett-tbsgg8owkkhnffwq2mfactt2hcup8kgbcn7a2znugmnflullguiaqs6gwwfmqw8.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Stage Shows / 03</span>
@@ -134,7 +133,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/stage-shows/04-stage-show-04.svg" src="assets/portfolio/stage-shows/04-aqpznf5al4u7kbmcfpx-0tpjuoyisror7e8rvxvwkuaojhuvzmdafnwmnewtln7y3uowk7cell21illbrzckyainzyg8p2wsz29aqmc.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/stage-shows/04-aqpznf5al4u7kbmcfpx-0tpjuoyisror7e8rvxvwkuaojhuvzmdafnwmnewtln7y3uowk7cell21illbrzckyainzyg8p2wsz29aqmc.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Stage Shows / 04</span>
@@ -145,7 +144,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
 <section class="portfolio-section" id="vsl-reels-for-ads">
       <div class="section-head">
         <div>
-          <span class="eyebrow">06 / VSL Reels For Ads</span>
+          <span class="eyebrow">02 / VSL Reels For Ads</span>
           <h2>VSL Reels For Ads</h2>
         </div>
         <p>Sales-led ad edits built around hooks, proof, pacing, and clear calls to action.</p>
@@ -153,7 +152,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
       <div class="video-grid">
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/vsl-reels-for-ads/01-ad-2-youtube-baker-exposed-secs-bhumika-ho1-cta1.svg" src="assets/portfolio/vsl-reels-for-ads/01-ad-2-youtube-baker-exposed-secs-bhumika-ho1-cta1.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/vsl-reels-for-ads/01-ad-2-youtube-baker-exposed-secs-bhumika-ho1-cta1.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">VSL Reels For Ads / 01</span>
@@ -161,7 +160,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/vsl-reels-for-ads/02-ad-9-i-tried-3-other-courses-first-90secs-hook-1-cta-1-1.svg" src="assets/portfolio/vsl-reels-for-ads/02-ad-9-i-tried-3-other-courses-first-90secs-hook-1-cta-1-1.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/vsl-reels-for-ads/02-ad-9-i-tried-3-other-courses-first-90secs-hook-1-cta-1-1.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">VSL Reels For Ads / 02</span>
@@ -169,7 +168,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/vsl-reels-for-ads/03-genx-final-version.svg" src="assets/portfolio/vsl-reels-for-ads/03-genx-final-version.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/vsl-reels-for-ads/03-genx-final-version.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">VSL Reels For Ads / 03</span>
@@ -177,7 +176,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/vsl-reels-for-ads/04-hook-1.svg" src="assets/portfolio/vsl-reels-for-ads/04-hook-1.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/vsl-reels-for-ads/04-hook-1.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">VSL Reels For Ads / 04</span>
@@ -185,7 +184,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card horizontal">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/vsl-reels-for-ads/05-horizontal-vsl.svg" src="assets/portfolio/vsl-reels-for-ads/05-horizontal-vsl.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/vsl-reels-for-ads/05-horizontal-vsl.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">VSL Reels For Ads / 05</span>
@@ -196,7 +195,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
 <section class="portfolio-section" id="ai-vedios">
       <div class="section-head">
         <div>
-          <span class="eyebrow">02 / AI Videos</span>
+          <span class="eyebrow">03 / AI Videos</span>
           <h2>AI Videos</h2>
         </div>
         <p>AI-assisted product visuals, concept clips, and commercial-style video experiments.</p>
@@ -204,7 +203,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
       <div class="video-grid">
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/ai-vedios/01-final-bella-viita.svg" src="assets/portfolio/ai-vedios/01-final-bella-viita.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/ai-vedios/01-final-bella-viita.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">AI Videos / 01</span>
@@ -212,7 +211,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/ai-vedios/02-noise-earpods.svg" src="assets/portfolio/ai-vedios/02-noise-earpods.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/ai-vedios/02-noise-earpods.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">AI Videos / 02</span>
@@ -220,7 +219,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/ai-vedios/03-sample-1.svg" src="assets/portfolio/ai-vedios/03-sample-1.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/ai-vedios/03-sample-1.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">AI Videos / 03</span>
@@ -228,7 +227,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/ai-vedios/04-sample-1-1-plum-tvai.svg" src="assets/portfolio/ai-vedios/04-sample-1-1-mp4-plum-tvai.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/ai-vedios/04-sample-1-1-mp4-plum-tvai.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">AI Videos / 04</span>
@@ -236,7 +235,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/ai-vedios/05-shoe-ad.svg" src="assets/portfolio/ai-vedios/05-shoe-ad.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/ai-vedios/05-shoe-ad.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">AI Videos / 05</span>
@@ -247,7 +246,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
 <section class="portfolio-section" id="event-reels">
       <div class="section-head">
         <div>
-          <span class="eyebrow">03 / Event Reels</span>
+          <span class="eyebrow">04 / Event Reels</span>
           <h2>Event Reels</h2>
         </div>
         <p>Fast event edits shaped for highlights, recaps, and audience-friendly social sharing.</p>
@@ -255,7 +254,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
       <div class="video-grid">
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/event-reels/01-chocloalte-module-reel-bon-bon-editions.svg" src="assets/portfolio/event-reels/01-chocloalte-module-reel-bon-bon-editions.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/event-reels/01-chocloalte-module-reel-bon-bon-editions.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Event Reels / 01</span>
@@ -263,7 +262,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/event-reels/02-chocolate-modulefinal.svg" src="assets/portfolio/event-reels/02-chocolate-modulefinal.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/event-reels/02-chocolate-modulefinal.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Event Reels / 02</span>
@@ -271,7 +270,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/event-reels/03-final-farwell-reel-version-2-1.svg" src="assets/portfolio/event-reels/03-final-farwell-reel-version-2-1.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/event-reels/03-final-farwell-reel-version-2-1.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Event Reels / 03</span>
@@ -279,7 +278,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/event-reels/04-final-render-online-new-intro-reel-2.svg" src="assets/portfolio/event-reels/04-final-render-online-new-intro-reel-2.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/event-reels/04-final-render-online-new-intro-reel-2.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Event Reels / 04</span>
@@ -287,7 +286,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/event-reels/05-orintation-2026-march-1.svg" src="assets/portfolio/event-reels/05-orintation-2026-march-1.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/event-reels/05-orintation-2026-march-1.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Event Reels / 05</span>
@@ -295,7 +294,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/event-reels/06-render-final.svg" src="assets/portfolio/event-reels/06-render-final.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/event-reels/06-render-final.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Event Reels / 06</span>
@@ -306,7 +305,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
 <section class="portfolio-section" id="music-vedio-promotion-reel">
       <div class="section-head">
         <div>
-          <span class="eyebrow">04 / Music Video Promotion Reels</span>
+          <span class="eyebrow">05 / Music Video Promotion Reels</span>
           <h2>Music Video Promotion Reels</h2>
         </div>
         <p>Promotion cuts connected to music video campaigns and artist releases.</p>
@@ -314,7 +313,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
       <div class="video-grid">
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/music-vedio-promotion-reel/01-music-promo-reel-01.svg" src="assets/portfolio/music-vedio-promotion-reel/01-saveinta-com-aqojqjqywybynvr2y7dkm3d52x7ff2ik3cpozdj1a3q8gszgy0ydwt-iefkljxbqnxph-egk9zhlab18uwuvqmu1q2iwloqjhdu3blg.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/music-vedio-promotion-reel/01-saveinta-com-aqojqjqywybynvr2y7dkm3d52x7ff2ik3cpozdj1a3q8gszgy0ydwt-iefkljxbqnxph-egk9zhlab18uwuvqmu1q2iwloqjhdu3blg.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Music Video Promotion Reels / 01</span>
@@ -322,7 +321,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/music-vedio-promotion-reel/02-music-promo-reel-02.svg" src="assets/portfolio/music-vedio-promotion-reel/02-saveinta-com-aqpytatw98iyapazzhgjyfvb3-8yn5jgbibt5zfl5f2paxy4vvxv7w57rwj169odsz-vaj85wambfripapiqviuoszq0zwq0hbyyxfe.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/music-vedio-promotion-reel/02-saveinta-com-aqpytatw98iyapazzhgjyfvb3-8yn5jgbibt5zfl5f2paxy4vvxv7w57rwj169odsz-vaj85wambfripapiqviuoszq0zwq0hbyyxfe.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Music Video Promotion Reels / 02</span>
@@ -333,7 +332,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
 <section class="portfolio-section" id="achor-reel-shoot-and-edit">
       <div class="section-head">
         <div>
-          <span class="eyebrow">01 / Anchor Reels - Shoot &amp; Edit</span>
+          <span class="eyebrow">06 / Anchor Reels - Shoot &amp; Edit</span>
           <h2>Anchor Reels - Shoot &amp; Edit</h2>
         </div>
         <p>Shot and edited short-form anchor content with tight framing, social pacing, and clean delivery.</p>
@@ -341,7 +340,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
       <div class="video-grid">
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/achor-reel-shoot-and-edit/01-anchor-reel-01.svg" src="assets/portfolio/achor-reel-shoot-and-edit/01-aqmirkmaff83ibmlp1vcxe7smv6y80-sdbnxwuyonxf3cg5aomrzqvtx90yupseawlbbf9xputucbd5cxez8e-e1l0j1sgghhziv30e.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/achor-reel-shoot-and-edit/01-aqmirkmaff83ibmlp1vcxe7smv6y80-sdbnxwuyonxf3cg5aomrzqvtx90yupseawlbbf9xputucbd5cxez8e-e1l0j1sgghhziv30e.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Anchor Reels - Shoot &amp; Edit / 01</span>
@@ -349,7 +348,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/achor-reel-shoot-and-edit/02-anchor-reel-02.svg" src="assets/portfolio/achor-reel-shoot-and-edit/02-aqmmc6x3124gta44034pjq2msnaqjqeyvoje3sd4cqvne9tqmcadzui6ybiydd8afnxygoj5if9jjui8vxqku-cjzelu3l-54r70hws.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/achor-reel-shoot-and-edit/02-aqmmc6x3124gta44034pjq2msnaqjqeyvoje3sd4cqvne9tqmcadzui6ybiydd8afnxygoj5if9jjui8vxqku-cjzelu3l-54r70hws.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Anchor Reels - Shoot &amp; Edit / 02</span>
@@ -357,7 +356,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/achor-reel-shoot-and-edit/03-anchor-reel-03.svg" src="assets/portfolio/achor-reel-shoot-and-edit/03-aqn6oyfpce19bav8e2mvgyezusybsmk-wck-xwf0hjdm1ya3eqvfhc-ngq3wy8z0s0nfitwa88igmnhf2zexvweoarlsglnpp-nvjfw.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/achor-reel-shoot-and-edit/03-aqn6oyfpce19bav8e2mvgyezusybsmk-wck-xwf0hjdm1ya3eqvfhc-ngq3wy8z0s0nfitwa88igmnhf2zexvweoarlsglnpp-nvjfw.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Anchor Reels - Shoot &amp; Edit / 03</span>
@@ -365,7 +364,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/achor-reel-shoot-and-edit/04-anchor-reel-04.svg" src="assets/portfolio/achor-reel-shoot-and-edit/04-aqoojep7gjlkgybo6igdpwnhj7icv9lxescikcyyvsdqbtpsjh7oimb8vfvr0ahld9ezl5owiypiem75qfo-uuuh2injv0uxwfoslg.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/achor-reel-shoot-and-edit/04-aqoojep7gjlkgybo6igdpwnhj7icv9lxescikcyyvsdqbtpsjh7oimb8vfvr0ahld9ezl5owiypiem75qfo-uuuh2injv0uxwfoslg.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Anchor Reels - Shoot &amp; Edit / 04</span>
@@ -373,7 +372,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/achor-reel-shoot-and-edit/05-anchor-reel-05.svg" src="assets/portfolio/achor-reel-shoot-and-edit/05-aqp7eylwzt2wwqgquuhzgvwfdffqb3fthhveroslvh7bneuub7jygbxkewoarea0bxniscgtuuigwcybtq0gbij8w4sxtxbxdy1z6tg.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/achor-reel-shoot-and-edit/05-aqp7eylwzt2wwqgquuhzgvwfdffqb3fthhveroslvh7bneuub7jygbxkewoarea0bxniscgtuuigwcybtq0gbij8w4sxtxbxdy1z6tg.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Anchor Reels - Shoot &amp; Edit / 05</span>
@@ -381,7 +380,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/achor-reel-shoot-and-edit/06-anchor-reel-06.svg" src="assets/portfolio/achor-reel-shoot-and-edit/06-aqpb5tssxtwbinr3bmls-kiud7f4-ucdunaqfh2klhvcapvzvu73-kchm4gjg97ua6mpjihp2qbmnaclrukbhruil68zgx1wchw8grs.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/achor-reel-shoot-and-edit/06-aqpb5tssxtwbinr3bmls-kiud7f4-ucdunaqfh2klhvcapvzvu73-kchm4gjg97ua6mpjihp2qbmnaclrukbhruil68zgx1wchw8grs.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Anchor Reels - Shoot &amp; Edit / 06</span>
@@ -389,7 +388,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/achor-reel-shoot-and-edit/07-anchor-reel-07.svg" src="assets/portfolio/achor-reel-shoot-and-edit/07-aqpbwbritbppnf0gdl7jtpxtz-amfdiyqolj9bgeyosggz44vme-jf94eqdym6hzmbnq0axbyoxo2vhguk2-8eng879y4ieg380x0oo.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/achor-reel-shoot-and-edit/07-aqpbwbritbppnf0gdl7jtpxtz-amfdiyqolj9bgeyosggz44vme-jf94eqdym6hzmbnq0axbyoxo2vhguk2-8eng879y4ieg380x0oo.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Anchor Reels - Shoot &amp; Edit / 07</span>
@@ -397,7 +396,7 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
         </article>
         <article class="video-card">
           <div class="video-frame">
-            <video controls preload="metadata" playsinline poster="assets/portfolio/thumbs/achor-reel-shoot-and-edit/08-anchor-reel-08.svg" src="assets/portfolio/achor-reel-shoot-and-edit/08-aqpk-0cnk7idcjpj9labtokwmiwuv-7ptzrfrkhue43extfiwc9d5nttpzbcsph-9wb7qiaaxwte4lusozmgtsejpsni-bmncdqfegs.mp4"></video>
+            <video controls preload="metadata" playsinline src="assets/portfolio/achor-reel-shoot-and-edit/08-aqpk-0cnk7idcjpj9labtokwmiwuv-7ptzrfrkhue43extfiwc9d5nttpzbcsph-9wb7qiaaxwte4lusozmgtsejpsni-bmncdqfegs.mp4"></video>
           </div>
           <div class="video-info">
             <span class="video-tag">Anchor Reels - Shoot &amp; Edit / 08</span>
@@ -408,6 +407,9 @@ footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; 
 <footer><span>Jagjeet Singh - Video Editor / VFX Artist</span><span>All videos loaded from local website files</span></footer>
 </body>
 </html>
+
+
+
 
 
 
