@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jagjeet Singh | Video Editor & VFX Artist</title>
+<meta name="description" content="Portfolio of Jagjeet Singh, a New Delhi based Video Editor, VFX Artist, AI Video Creator, and live production specialist.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #070707;
+  --panel: #101010;
+  --panel-2: #171717;
+  --ink: #f4f1ea;
+  --soft: #c9c1b7;
+  --muted: #8a837c;
+  --line: rgba(244, 241, 234, .13);
+  --accent: #ff5a1f;
+  --cyan: #25e6d1;
+  --olive: #a8c256;
+  --shadow: rgba(0, 0, 0, .55);
+  --display: "Bebas Neue", Impact, sans-serif;
+  --body: "Manrope", Arial, sans-serif;
+  --mono: "Space Mono", Consolas, monospace;
+  --ease: cubic-bezier(.16, 1, .3, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 84% 8%, rgba(37, 230, 209, .09), transparent 28rem),
+    radial-gradient(circle at 8% 28%, rgba(255, 90, 31, .12), transparent 30rem),
+    var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  line-height: 1.55;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+@media (hover: none) {
+  body {
+    cursor: auto;
+  }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: .045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+section,
+header {
+  scroll-margin-top: 5rem;
+}
+
+button {
+  font: inherit;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  border-radius: 999px;
+  z-index: 2000;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+.cursor-dot {
+  width: 7px;
+  height: 7px;
+  background: #fff;
+}
+
+.cursor-ring {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, .65);
+  transition: width .25s var(--ease), height .25s var(--ease), background .25s var(--ease);
+}
+
+.cursor-ring.is-hovering {
+  width: 64px;
+  height: 64px;
+  background: rgba(255, 255, 255, .08);
+}
+
+@media (hover: none) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+}
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  display: grid;
+  place-items: center;
+  background: #030303;
+  transition: transform .9s var(--ease);
+}
+
+.loader.is-done {
+  transform: translateY(-100%);
+}
+
+.loader-card {
+  width: min(34rem, calc(100vw - 3rem));
+  text-align: center;
+}
+
+.loader-name {
+  font-family: var(--display);
+  font-size: 5.8rem;
+  line-height: .86;
+  letter-spacing: 0;
+}
+
+.loader-role,
+.loader-count {
+  font-family: var(--mono);
+  font-size: .75rem;
+  color: var(--muted);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.loader-role {
+  color: var(--cyan);
+  margin-bottom: 1.4rem;
+}
+
+.loader-bar {
+  height: 2px;
+  margin: 1.4rem auto .9rem;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.loader-bar span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--cyan));
+}
+
+.site-shell {
+  opacity: 0;
+  transition: opacity .8s ease;
+}
+
+.site-shell.is-ready {
+  opacity: 1;
+}
+
+.nav {
+  position: fixed;
+  z-index: 900;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.15rem 3rem;
+  color: var(--ink);
+  background: rgba(7, 7, 7, .62);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  font-family: var(--mono);
+  font-size: .78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border: 1px solid var(--line);
+  background: var(--ink);
+  color: #080808;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.45rem;
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--soft);
+  text-transform: uppercase;
+}
+
+.nav-links a {
+  position: relative;
+  transition: color .2s ease;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -.35rem;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width .28s var(--ease);
+}
+
+.nav-links a:hover {
+  color: var(--ink);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-status {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.rec-dot {
+  width: .5rem;
+  height: .5rem;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 1rem rgba(255, 90, 31, .7);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .35;
+  }
+}
+
+.hero {
+  min-height: 89svh;
+  position: relative;
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+  padding: 8.2rem 3rem 3.5rem;
+  isolation: isolate;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+}
+
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.96) contrast(1.05);
+  transform: scale(1.03);
+}
+
+.hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, .88), rgba(0, 0, 0, .46) 48%, rgba(0, 0, 0, .68)),
+    linear-gradient(180deg, rgba(0, 0, 0, .38), rgba(0, 0, 0, .72) 76%, var(--bg));
+}
+
+.scan-lines {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  opacity: .25;
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,.08) 0 1px, transparent 1px 4px);
+  mix-blend-mode: overlay;
+}
+
+.letterbox {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4.5vh;
+  z-index: -1;
+  background: #000;
+}
+
+.letterbox.top {
+  top: 0;
+}
+
+.letterbox.bottom {
+  bottom: 0;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 22rem;
+  gap: 2rem;
+  align-items: end;
+  width: min(78rem, 100%);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  margin-bottom: 1.1rem;
+  font-family: var(--mono);
+  color: var(--cyan);
+  font-size: .72rem;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 2.4rem;
+  height: 1px;
+  background: currentColor;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+.hero-title {
+  max-width: 48rem;
+  font-family: var(--display);
+  font-size: 7.4rem;
+  line-height: .9;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.hero-title span {
+  color: var(--cyan);
+  text-shadow: 0 0 22px rgba(37, 230, 209, .18);
+}
+
+.hero-copy {
+  max-width: 43rem;
+  margin-top: 1.25rem;
+  color: var(--soft);
+  font-size: 1.04rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .9rem;
+  margin-top: 1.8rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .65rem;
+  min-height: 3rem;
+  padding: .85rem 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: .72rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-align: center;
+  transition: transform .25s var(--ease), border-color .25s ease, background .25s ease, color .25s ease;
+}
+
+.button svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+
+.button.primary {
+  border-color: transparent;
+  background: var(--accent);
+  color: #160702;
+  font-weight: 700;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.button.primary:hover {
+  background: var(--cyan);
+}
+
+.hero-panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem;
+  background: rgba(8, 8, 8, .62);
+  box-shadow: 0 2rem 5rem var(--shadow);
+  backdrop-filter: blur(14px);
+}
+
+.panel-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .85rem 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.panel-line:last-child {
+  border-bottom: 0;
+}
+
+.panel-line strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.ticker {
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: #050505;
+  white-space: nowrap;
+}
+
+.ticker-track {
+  display: inline-flex;
+  animation: ticker 30s linear infinite;
+}
+
+.ticker span {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 1.65rem;
+  font-family: var(--display);
+  font-size: 1.65rem;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.ticker span:nth-child(2n) {
+  color: rgba(244, 241, 234, .52);
+}
+
+.ticker i {
+  color: var(--accent);
+  font-style: normal;
+}
+
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.section {
+  padding: 6.5rem 3rem;
+}
+
+.section.alt {
+  background: var(--panel);
+}
+
+.section.dark {
+  background: #050505;
+}
+
+.section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2.8rem;
+}
+
+.section-title {
+  font-family: var(--display);
+  font-size: 4.6rem;
+  line-height: .98;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.section-kicker {
+  max-width: 24rem;
+  color: var(--muted);
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 24rem;
+  gap: 3rem;
+  align-items: start;
+}
+
+.about-copy {
+  display: grid;
+  gap: 1rem;
+  max-width: 58rem;
+  color: var(--soft);
+  font-size: 1.06rem;
+}
+
+.about-copy strong {
+  color: var(--ink);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--line);
+}
+
+.stat {
+  min-height: 9rem;
+  padding: 1.35rem;
+  background: var(--panel-2);
+}
+
+.stat-number {
+  font-family: var(--display);
+  font-size: 4rem;
+  line-height: .85;
+  color: var(--accent);
+}
+
+.stat-label {
+  margin-top: .7rem;
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin-top: 1.8rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.35rem;
+  padding: .55rem .85rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--soft);
+  background: rgba(255, 255, 255, .025);
+}
+
+.chip.hot {
+  border-color: rgba(255, 90, 31, .42);
+  color: var(--ink);
+}
+
+.craft-grid,
+.tools-grid,
+.award-grid,
+.testimonial-grid {
+  display: grid;
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--line);
+}
+
+.craft-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.craft-card,
+.tool-card,
+.award-card,
+.testimonial {
+  background: var(--panel);
+  padding: 1.55rem;
+}
+
+.craft-card {
+  min-height: 16rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background .25s ease;
+}
+
+.craft-card:hover,
+.tool-card:hover,
+.award-card:hover,
+.testimonial:hover {
+  background: var(--panel-2);
+}
+
+.card-no {
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--accent);
+}
+
+.craft-card h3,
+.award-card h3,
+.testimonial h3 {
+  font-family: var(--display);
+  font-size: 1.85rem;
+  line-height: 1.04;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.craft-card p,
+.award-card p,
+.testimonial p {
+  color: var(--muted);
+  margin-top: .8rem;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+}
+
+.work-card {
+  position: relative;
+  min-height: 21rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  isolation: isolate;
+}
+
+.work-card.big {
+  grid-column: span 4;
+}
+
+.work-card.small {
+  grid-column: span 2;
+}
+
+.work-card.mid {
+  grid-column: span 3;
+}
+
+.work-card.full {
+  grid-column: span 6;
+  min-height: 15rem;
+}
+
+.work-card img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .55s var(--ease);
+}
+
+.work-card:hover img {
+  transform: scale(1.06);
+}
+
+.work-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, .12), rgba(0, 0, 0, .88)),
+    radial-gradient(circle at 84% 14%, rgba(255, 90, 31, .32), transparent 18rem);
+}
+
+.work-card.no-image::after {
+  background:
+    radial-gradient(circle at 80% 18%, rgba(37, 230, 209, .16), transparent 18rem),
+    linear-gradient(135deg, #111, #050505);
+}
+
+.work-content {
+  min-height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.4rem;
+  padding: 1.45rem;
+}
+
+.work-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--soft);
+  text-transform: uppercase;
+}
+
+.work-card h3 {
+  max-width: 24rem;
+  font-family: var(--display);
+  font-size: 3rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.work-card p {
+  max-width: 28rem;
+  color: var(--soft);
+  margin-top: .7rem;
+}
+
+.work-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .65rem;
+  margin-top: 1rem;
+}
+
+.work-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.6rem;
+  padding: .7rem .9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 241, 234, .24);
+  background: rgba(0, 0, 0, .42);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: .68rem;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background .25s ease, border-color .25s ease, color .25s ease, transform .25s var(--ease);
+}
+
+.work-link:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #160702;
+}
+
+.experience {
+  position: relative;
+  display: grid;
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--line);
+}
+
+.job {
+  display: grid;
+  grid-template-columns: 18rem minmax(0, 1fr);
+  gap: 2rem;
+  padding: 1.6rem;
+  background: var(--panel);
+}
+
+.job-company {
+  font-family: var(--display);
+  font-size: 2.1rem;
+  line-height: 1.03;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.job-period,
+.job-role {
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-top: .55rem;
+}
+
+.job-role {
+  color: var(--soft);
+}
+
+.job ul {
+  display: grid;
+  gap: .65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--soft);
+}
+
+.job li {
+  position: relative;
+  padding-left: 1.1rem;
+}
+
+.job li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .65rem;
+  width: .38rem;
+  height: .38rem;
+  background: var(--cyan);
+}
+
+.tools-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.tool-card {
+  min-height: 10rem;
+}
+
+.tool-icon {
+  display: grid;
+  place-items: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  margin-bottom: 1.1rem;
+  border-radius: 8px;
+  color: #090909;
+  background: var(--cyan);
+  font-family: var(--mono);
+  font-weight: 700;
+}
+
+.tool-card:nth-child(2n) .tool-icon {
+  background: var(--accent);
+}
+
+.tool-card:nth-child(3n) .tool-icon {
+  background: var(--olive);
+}
+
+.tool-name {
+  font-weight: 800;
+}
+
+.tool-sub {
+  margin-top: .25rem;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.award-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.award-card {
+  min-height: 15rem;
+}
+
+.award-tag {
+  display: inline-flex;
+  margin-bottom: 1.6rem;
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--cyan);
+  text-transform: uppercase;
+}
+
+.testimonial-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.testimonial {
+  min-height: 17rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.quote-mark {
+  font-family: var(--display);
+  font-size: 4rem;
+  line-height: .7;
+  color: var(--accent);
+}
+
+.testimonial p {
+  color: var(--soft);
+  font-size: .98rem;
+}
+
+.testimonial h3 {
+  margin-top: 1.4rem;
+  font-size: 1.6rem;
+}
+
+.testimonial small {
+  display: block;
+  margin-top: .35rem;
+  font-family: var(--mono);
+  color: var(--muted);
+  font-size: .68rem;
+  text-transform: uppercase;
+}
+
+.contact {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 80% 12%, rgba(255, 90, 31, .2), transparent 28rem),
+    #050505;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 28rem;
+  gap: 3rem;
+  align-items: end;
+}
+
+.contact-title {
+  font-family: var(--display);
+  font-size: 6.4rem;
+  line-height: .94;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.contact-title span {
+  color: var(--accent);
+}
+
+.contact-copy {
+  max-width: 33rem;
+  margin-top: 1.2rem;
+  color: var(--soft);
+}
+
+.contact-list {
+  display: grid;
+  gap: .75rem;
+}
+
+.contact-row {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 1.05rem;
+  align-items: center;
+  min-height: 4.3rem;
+  padding: .75rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .035);
+  transition: transform .25s var(--ease), border-color .25s ease, background .25s ease;
+}
+
+.contact-row:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, .065);
+}
+
+.contact-icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 8px;
+  background: var(--ink);
+  color: #080808;
+}
+
+.contact-icon svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: currentColor;
+}
+
+.contact-row > span:last-child {
+  display: grid;
+  gap: .25rem;
+  min-width: 0;
+}
+
+.contact-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: .68rem;
+  line-height: 1.15;
+  letter-spacing: .08em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.contact-value {
+  display: block;
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  font-size: clamp(.95rem, 1.7vw, 1.2rem);
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.4rem 3rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  background: #050505;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity .75s var(--ease), transform .75s var(--ease);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 1060px) {
+  .hero-title {
+    font-size: 5.8rem;
+  }
+
+  .hero-grid,
+  .about-layout,
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-panel {
+    max-width: 30rem;
+  }
+
+  .craft-grid,
+  .testimonial-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tools-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 820px) {
+  body {
+    cursor: auto;
+  }
+
+  .nav {
+    padding: .9rem 1rem;
+  }
+
+  .nav-links,
+  .nav-status {
+    display: none;
+  }
+
+  .hero,
+  .section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero {
+    min-height: 86svh;
+    padding-top: 6.5rem;
+  }
+
+  .hero-media img {
+    object-position: 58% center;
+    transform: scale(1.12);
+  }
+
+  .hero-title,
+  .contact-title {
+    font-size: 4.25rem;
+  }
+
+  .section-title {
+    font-size: 3.25rem;
+  }
+
+  .section-head {
+    display: grid;
+  }
+
+  .work-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .work-card.big,
+  .work-card.small,
+  .work-card.mid,
+  .work-card.full {
+    grid-column: auto;
+  }
+
+  .job {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .tools-grid,
+  .award-grid,
+  .craft-grid,
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  footer {
+    display: grid;
+    padding: 1.2rem 1rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .loader-name,
+  .hero-title,
+  .contact-title {
+    font-size: 3.35rem;
+  }
+
+  .section-title {
+    font-size: 2.7rem;
+  }
+
+  .hero-actions {
+    display: grid;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .work-card h3 {
+    font-size: 2.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2001;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--cyan));
+  transition: width .1s linear;
+}
+
+.showreel-container {
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.showreel-embed {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #000;
+}
+
+.showreel-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+  margin-top: 1.4rem;
+}
+
+.testimonial-avatar {
+  display: grid;
+  place-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 999px;
+  background: var(--avatar-bg, var(--cyan));
+  color: #080808;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: .78rem;
+  flex-shrink: 0;
+}
+
+footer {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.6rem 3rem;
+  border-top: 1px solid var(--line);
+  background: #050505;
+  font-family: var(--mono);
+  font-size: .72rem;
+  text-transform: uppercase;
+}
+
+.footer-name {
+  font-family: var(--display);
+  font-size: 1.8rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  display: block;
+}
+
+.footer-role {
+  font-family: var(--mono);
+  font-size: .65rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.4rem;
+  font-family: var(--mono);
+  font-size: .7rem;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+
+.footer-links a {
+  transition: color .2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--ink);
+}
+
+.footer-meta {
+  text-align: right;
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.footer-status {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: .4rem;
+  color: var(--soft);
+}
+
+.footer-status .rec-dot {
+  width: .4rem;
+  height: .4rem;
+}
+
+@media (max-width: 820px) {
+  footer {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: .8rem;
+    padding: 1.2rem 1rem;
+  }
+
+  .footer-meta {
+    text-align: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-card">
+    <div class="loader-role">Portfolio render</div>
+    <div class="loader-name">JAGJEET<br>SINGH</div>
+    <div class="loader-bar"><span id="loaderBar"></span></div>
+    <div class="loader-count" id="loaderCount">LOADING 00</div>
+  </div>
+</div>
+
+<div class="site-shell" id="siteShell">
+  <nav class="nav">
+    <a class="brand magnetic" href="#top" aria-label="Jagjeet Singh home">
+      <span class="brand-mark">JS</span>
+      <span>Jagjeet Singh</span>
+    </a>
+    <div class="nav-links">
+      <a class="magnetic" href="#about">About</a>
+      <a class="magnetic" href="#experience">Experience</a>
+      <a class="magnetic" href="#work">Work</a>
+      <a class="magnetic" href="work.html">Work Library</a>
+      <a class="magnetic" href="#testimonials">Testimonials</a>
+      <a class="magnetic" href="#contact">Contact</a>
+    </div>
+    <div class="nav-status"><span class="rec-dot"></span><span id="timecode">00:00:00:00</span></div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-media">
+      <img src="assets/jagjeet-hero.png" alt="Jagjeet Singh portfolio portrait in a creative editing studio">
+    </div>
+    <div class="scan-lines"></div>
+    <div class="letterbox top"></div>
+    <div class="letterbox bottom"></div>
+
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow reveal">Video Editor / VFX Artist / AI Creator</div>
+        <h1 class="hero-title reveal">Jagjeet<br><span>Singh</span></h1>
+        <p class="hero-copy reveal">I make footage feel like it was always meant to look that way. Cinematic edits, motion graphics, AI visuals, reels, and live production — all coming together in New Delhi.</p>
+        <div class="hero-actions reveal">
+          <a class="button primary magnetic" href="#work">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+            View Work
+          </a>
+          <a class="button magnetic" href="#contact">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"></path></svg>
+            Get In Touch
+          </a>
+        </div>
+      </div>
+
+      <aside class="hero-panel reveal" aria-label="Portfolio summary">
+        <div class="panel-line"><span>Base</span><strong>New Delhi</strong></div>
+        <div class="panel-line"><span>Focus</span><strong>Post-production</strong></div>
+        <div class="panel-line"><span>Current</span><strong>Truffle Nation</strong></div>
+        <div class="panel-line"><span>Status</span><strong>Open to projects</strong></div>
+      </aside>
+    </div>
+  </header>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Premiere Pro</span><span><i>/</i> After Effects</span><span>DaVinci Resolve</span><span><i>/</i> AI Video</span><span>OBS Studio</span><span><i>/</i> Motion Graphics</span><span>Color Grading</span><span><i>/</i> Freepik Spaces</span><span>Live Streaming</span><span><i>/</i> Prompt Engineering</span>
+      <span>Premiere Pro</span><span><i>/</i> After Effects</span><span>DaVinci Resolve</span><span><i>/</i> AI Video</span><span>OBS Studio</span><span><i>/</i> Motion Graphics</span><span>Color Grading</span><span><i>/</i> Freepik Spaces</span><span>Live Streaming</span><span><i>/</i> Prompt Engineering</span>
+    </div>
+  </div>
+
+  <main>
+    <section class="section alt" id="about">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow reveal">01 / About me</div>
+          <h2 class="section-title reveal">I cut stories<br>that land</h2>
+        </div>
+        <p class="section-kicker reveal">A practical mix of editing craft, VFX thinking, AI workflows, and live production confidence.</p>
+      </div>
+
+      <div class="about-layout">
+        <div>
+          <div class="about-copy reveal">
+            <p><strong>Motivated and detail-oriented Video Editor</strong> with a strong foundation in post-production and visual storytelling. I bridge traditional filmmaking craft with modern AI tools to create content that feels sharp, clear, and memorable.</p>
+            <p>From music videos to social media reels, live streaming setups to AI-generated visual concepts, I handle the full creative pipeline. I am currently working at <strong>Truffle Nation</strong> as an AI Video Creator and Social Media Video Editor.</p>
+            <p>I hold a Diploma in <strong>ADVFX (Advanced Program in Visual Effects)</strong> from MAAC Institute and I am a two-time Bronze Winner at the Delhi CG Animation Awards 2024.</p>
+          </div>
+          <div class="chips reveal" aria-label="Key skills">
+            <span class="chip hot">Premiere Pro</span>
+            <span class="chip hot">After Effects</span>
+            <span class="chip hot">DaVinci Resolve</span>
+            <span class="chip">Photoshop</span>
+            <span class="chip">Illustrator</span>
+            <span class="chip hot">AI Prompt Engineering</span>
+            <span class="chip hot">Freepik Spaces</span>
+            <span class="chip">Claude AI</span>
+            <span class="chip">ChatGPT</span>
+            <span class="chip">OBS Studio</span>
+            <span class="chip">Live Streaming</span>
+            <span class="chip">Blender</span>
+            <span class="chip">Short-form Editing</span>
+          </div>
+        </div>
+
+        <div class="stats-grid reveal">
+          <div class="stat">
+            <div class="stat-number">3+</div>
+            <div class="stat-label">Years experience</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">2x</div>
+            <div class="stat-label">Bronze award winner</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Projects completed</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Companies worked</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="craft">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow reveal">02 / What I do</div>
+          <h2 class="section-title reveal">Post-production<br>with momentum</h2>
+        </div>
+      </div>
+
+      <div class="craft-grid">
+        <article class="craft-card reveal">
+          <div class="card-no">01</div>
+          <div>
+            <h3>Short-form edits</h3>
+            <p>Reels, shorts, product clips, captions, hooks, rhythm cuts, and social-first pacing.</p>
+          </div>
+        </article>
+        <article class="craft-card reveal">
+          <div class="card-no">02</div>
+          <div>
+            <h3>AI video creation</h3>
+            <p>Prompt-led visual concepts, AI B-roll ideas, and campaign visuals built for fast iteration.</p>
+          </div>
+        </article>
+        <article class="craft-card reveal">
+          <div class="card-no">03</div>
+          <div>
+            <h3>VFX and motion</h3>
+            <p>Motion graphics, titles, cleanup, compositing support, and polished visual storytelling.</p>
+          </div>
+        </article>
+        <article class="craft-card reveal">
+          <div class="card-no">04</div>
+          <div>
+            <h3>Live production</h3>
+            <p>Camera framing, lighting, OBS setup, scene switching, and stable online streams.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="showreel">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow reveal">Showreel</div>
+          <h2 class="section-title reveal">Watch me<br>work</h2>
+        </div>
+        <p class="section-kicker reveal">A sample of the edit bay in action — TRY BALL music video edit.</p>
+      </div>
+      <div class="showreel-container reveal">
+        <div class="showreel-embed">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/Or7A11-Yt1w?si=z0CyyAsmjHwldL39" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="experience">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow reveal">03 / Experience</div>
+          <h2 class="section-title reveal">Where I have<br>worked</h2>
+        </div>
+      </div>
+
+      <div class="experience">
+        <article class="job reveal">
+          <div>
+            <div class="job-company">Truffle Nation</div>
+            <div class="job-period">Nov 2025 - Present</div>
+            <div class="job-role">AI Video Creator & Social Media Video Editor</div>
+          </div>
+          <ul>
+            <li>Managed and produced multiple short-form videos for online platforms.</li>
+            <li>Shot camera footage for short-form reels, including framing, lighting, and clean social-first coverage.</li>
+            <li>Set up and handled live online streaming using camera systems and OBS.</li>
+            <li>Configured camera framing, lighting, and scene switching for smooth live production.</li>
+            <li>Used AI tools to generate B-roll ideas and visual concepts for videos.</li>
+            <li>Created detailed prompts to produce multiple AI-assisted video outputs.</li>
+          </ul>
+        </article>
+
+        <article class="job reveal">
+          <div>
+            <div class="job-company">Get Your Reach</div>
+            <div class="job-period">2024 - 8 Months</div>
+            <div class="job-role">Social Media Designer & Video Editor</div>
+          </div>
+          <ul>
+            <li>Created graphics and promotional content for social media platforms.</li>
+            <li>Shot and edited reels, stories, and promotional campaigns.</li>
+            <li>Collaborated with content and marketing teams to align visuals with brand messaging.</li>
+            <li>Managed end-to-end video production from planning to post-production.</li>
+          </ul>
+        </article>
+
+        <article class="job reveal">
+          <div>
+            <div class="job-company">Self-Employed</div>
+            <div class="job-period">2024 - Present</div>
+            <div class="job-role">Freelance Video Editor</div>
+          </div>
+          <ul>
+            <li>Edited promotional videos, reels, and YouTube content for clients.</li>
+            <li>Delivered customized edits based on client needs and brand aesthetics.</li>
+            <li>Handled post-production including color correction, sound design, and motion graphics.</li>
+            <li>Notable credit: TRY BALL by Vishesh Malik ft. Ghaint Jxtt - Music Video Editor.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section dark" id="work">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow reveal">04 / Selected work</div>
+          <h2 class="section-title reveal">Portfolio<br>signals</h2>
+        </div>
+        <p class="section-kicker reveal">Local reels, ads, event edits, AI videos, and one official music video link.</p>
+      </div>
+
+      <div class="work-grid">
+        <article class="work-card full no-image reveal">
+          <div class="work-content">
+            <div class="work-top"><span>Complete portfolio</span><span>30 local videos</span></div>
+            <div>
+              <h3>All uploaded work in one place</h3>
+              <p>Browse the full local work library with anchor reels, AI videos, event reels, stage shows, VSL ads, and music promotion reels.</p>
+              <div class="work-actions">
+                <a class="work-link magnetic" href="work.html">Open work library</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-card big reveal">
+          <img src="assets/reels-visual.png" alt="Short-form reels portfolio visual">
+          <div class="work-content">
+            <div class="work-top"><span>Social</span><span>Anchor / event reels</span></div>
+            <div>
+              <h3>Reels and event edits</h3>
+              <p>Fast hooks, crisp pacing, stage energy, event highlights, and platform-ready short-form cuts.</p>
+              <div class="work-actions">
+                <a class="work-link magnetic" href="work.html#achor-reel-shoot-and-edit">Anchor reels</a>
+                <a class="work-link magnetic" href="work.html#event-reels">Event reels</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-card small reveal">
+          <img src="assets/ugc-visual.png" alt="UGC ads and brand social video visual">
+          <div class="work-content">
+            <div class="work-top"><span>Brand</span><span>VSL / AI ads</span></div>
+            <div>
+              <h3>Ads and AI videos</h3>
+              <p>Promotional clips, creator-style formats, product visuals, AI concepts, and VSL delivery.</p>
+              <div class="work-actions">
+                <a class="work-link magnetic" href="work.html#vsl-reels-for-ads">VSL ads</a>
+                <a class="work-link magnetic" href="work.html#ai-vedios">AI videos</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-card mid no-image reveal">
+          <div class="work-content">
+            <div class="work-top"><span>Music video</span><span>TRY BALL</span></div>
+            <div>
+              <h3>Vishesh Malik ft. Ghaint Jxtt</h3>
+              <p>Official music video editing credit with color grading, motion graphics, and visual sync.</p>
+              <div class="work-actions">
+                <a class="work-link magnetic" href="https://youtu.be/Or7A11-Yt1w?si=D9_qc2FKpKlCfXap" target="_blank">Watch video</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-card mid no-image reveal">
+          <div class="work-content">
+            <div class="work-top"><span>Local library</span><span>Stage / music promos</span></div>
+            <div>
+              <h3>Stage shows and promo reels</h3>
+              <p>Performance highlights and music promotion reels are now uploaded directly inside the website.</p>
+              <div class="work-actions">
+                <a class="work-link magnetic" href="work.html#stage-shows">Stage shows</a>
+                <a class="work-link magnetic" href="work.html#music-vedio-promotion-reel">Music promos</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="tools">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow reveal">05 / Tools</div>
+          <h2 class="section-title reveal">Creative<br>toolkit</h2>
+        </div>
+      </div>
+
+      <div class="tools-grid">
+        <article class="tool-card reveal"><div class="tool-icon">Pr</div><div class="tool-name">Premiere Pro</div><div class="tool-sub">Editing & timeline</div></article>
+        <article class="tool-card reveal"><div class="tool-icon">Ae</div><div class="tool-name">After Effects</div><div class="tool-sub">Motion & VFX</div></article>
+        <article class="tool-card reveal"><div class="tool-icon">Ps</div><div class="tool-name">Photoshop</div><div class="tool-sub">Design & compositing</div></article>
+        <article class="tool-card reveal"><div class="tool-icon">Dr</div><div class="tool-name">DaVinci Resolve</div><div class="tool-sub">Color grading</div></article>
+        <article class="tool-card reveal"><div class="tool-icon">Ai</div><div class="tool-name">Illustrator</div><div class="tool-sub">Vector graphics</div></article>
+        <article class="tool-card reveal"><div class="tool-icon">Bl</div><div class="tool-name">Blender</div><div class="tool-sub">3D & animation</div></article>
+        <article class="tool-card reveal"><div class="tool-icon">OBS</div><div class="tool-name">OBS Studio</div><div class="tool-sub">Live streaming</div></article>
+        <article class="tool-card reveal"><div class="tool-icon">AI</div><div class="tool-name">AI Tools</div><div class="tool-sub">Sora, ChatGPT, Claude, Kling, Freepik, Higgsfield, LumaLabs</div></article>
+      </div>
+    </section>
+
+    <section class="section alt" id="awards">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow reveal">06 / Recognition</div>
+          <h2 class="section-title reveal">Awards &<br>credits</h2>
+        </div>
+      </div>
+
+      <div class="award-grid">
+        <article class="award-card reveal">
+          <span class="award-tag">Award / 2024</span>
+          <h3>Delhi CG Animation Awards</h3>
+          <p>Two-time Bronze Winner at the Delhi CG Animation Awards and International Animation Awards, recognizing consistent visual craft.</p>
+        </article>
+        <article class="award-card reveal">
+          <span class="award-tag">Competition</span>
+          <h3>100 Hours - MAAC Institute</h3>
+          <p>Recognized for creativity, speed, storytelling, teamwork, and adaptability under time-bound production pressure.</p>
+        </article>
+        <article class="award-card reveal">
+          <span class="award-tag">Music video</span>
+          <h3>TRY BALL</h3>
+          <p>Music Video Editor for TRY BALL by Vishesh Malik ft. Ghaint Jxtt, including color grading, motion graphics, and sync.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="testimonials">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow reveal">07 / Client words</div>
+          <h2 class="section-title reveal">Indian clients,<br>sharp feedback</h2>
+        </div>
+      </div>
+
+      <div class="testimonial-grid">
+        <article class="testimonial reveal">
+          <div>
+            <div class="quote-mark">"</div>
+            <p>Jagjeet understood the exact rhythm our food content needed. The edits felt premium, quick, and made for social platforms from the first frame.</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="--avatar-bg: #25e6d1;">PS</div>
+            <div>
+              <h3>Priya Sethi</h3>
+              <small>Marketing Lead, Truffle Nation</small>
+            </div>
+          </div>
+        </article>
+        <article class="testimonial reveal">
+          <div>
+            <div class="quote-mark">"</div>
+            <p>For Get Your Reach, he balanced design sense with video pacing beautifully. Our reels started feeling more consistent and much more polished.</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="--avatar-bg: #ff5a1f;">RK</div>
+            <div>
+              <h3>Rohan Kapoor</h3>
+              <small>Creative Strategist, Get Your Reach</small>
+            </div>
+          </div>
+        </article>
+        <article class="testimonial reveal">
+          <div>
+            <div class="quote-mark">"</div>
+            <p>On TRY BALL, the cut had energy and timing. Jagjeet matched the track, kept the visuals moving, and gave the video a clean final finish.</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="--avatar-bg: #a8c256;">VM</div>
+            <div>
+              <h3>Vishesh Malik</h3>
+              <small>Artist, TRY BALL</small>
+            </div>
+          </div>
+        </article>
+        <article class="testimonial reveal">
+          <div>
+            <div class="quote-mark">"</div>
+            <p>We needed live streaming, camera setup, and final clips without chaos. Jagjeet handled the technical side and still kept the creative output strong.</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="--avatar-bg: #25e6d1;">SK</div>
+            <div>
+              <h3>Simran Kaur</h3>
+              <small>Founder, Delhi Creator Studio</small>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="contact-layout">
+        <div class="reveal">
+          <div class="eyebrow">08 / Contact</div>
+          <h2 class="contact-title">Let's create<br><span>together</span></h2>
+          <p class="contact-copy">Available for freelance projects, full-time roles, and collaborations. Based in New Delhi and open to remote work worldwide.</p>
+        </div>
+
+        <div class="contact-list reveal">
+          <a class="contact-row magnetic" href="mailto:Jagjeetsingh875072@gmail.com">
+            <span class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"></path></svg></span>
+            <span><span class="contact-label">Email</span><span class="contact-value">Jagjeetsingh875072@gmail.com</span></span>
+          </a>
+          <a class="contact-row magnetic" href="tel:+919319503314">
+            <span class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"></path></svg></span>
+            <span><span class="contact-label">Phone & WhatsApp</span><span class="contact-value">+91 93195 03314</span></span>
+          </a>
+          <a class="contact-row magnetic" href="https://www.linkedin.com/in/jagjeet-singh-4224b9390" target="_blank">
+            <span class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3-1.9 0-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6h.1c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.3zM5.3 7.4a2.1 2.1 0 1 1 0-4.1 2.1 2.1 0 0 1 0 4.1zm1.8 13.1H3.6V9h3.5v11.5zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6C0 23.2.8 24 1.8 24h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"></path></svg></span>
+            <span><span class="contact-label">LinkedIn</span><span class="contact-value">linkedin.com/in/jagjeet-singh</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <span class="footer-name">Jagjeet Singh</span>
+      <span class="footer-role">Video Editor / VFX Artist</span>
+    </div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-meta">
+      <span class="footer-status"><span class="rec-dot"></span> Available for work</span>
+      <span>&copy; 2026 New Delhi</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+const loader = document.getElementById("loader");
+const loaderBar = document.getElementById("loaderBar");
+const loaderCount = document.getElementById("loaderCount");
+const siteShell = document.getElementById("siteShell");
+
+let loadValue = 0;
+const loadTimer = setInterval(() => {
+  loadValue += Math.floor(Math.random() * 9) + 5;
+  if (loadValue > 100) loadValue = 100;
+  loaderBar.style.width = loadValue + "%";
+  loaderCount.textContent = "LOADING " + String(loadValue).padStart(2, "0");
+  if (loadValue === 100) {
+    clearInterval(loadTimer);
+    setTimeout(() => {
+      loader.classList.add("is-done");
+      siteShell.classList.add("is-ready");
+      document.querySelectorAll(".hero .reveal").forEach((el, i) => {
+        setTimeout(() => el.classList.add("is-visible"), i * 120);
+      });
+    }, 450);
+  }
+}, 70);
+
+const dot = document.querySelector(".cursor-dot");
+const ring = document.querySelector(".cursor-ring");
+let mouseX = 0;
+let mouseY = 0;
+let ringX = 0;
+let ringY = 0;
+
+if (matchMedia("(hover: hover)").matches) {
+  window.addEventListener("mousemove", (event) => {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+    dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+  });
+
+  const animateCursor = () => {
+    ringX += (mouseX - ringX) * .16;
+    ringY += (mouseY - ringY) * .16;
+    ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+    requestAnimationFrame(animateCursor);
+  };
+  animateCursor();
+
+  document.querySelectorAll("a, button, .magnetic, .work-card").forEach((el) => {
+    el.addEventListener("mouseenter", () => ring.classList.add("is-hovering"));
+    el.addEventListener("mouseleave", () => ring.classList.remove("is-hovering"));
+  });
+}
+
+const timecode = document.getElementById("timecode");
+let frame = 0;
+setInterval(() => {
+  frame += 1;
+  const fps = 24;
+  const fr = frame % fps;
+  const seconds = Math.floor(frame / fps) % 60;
+  const minutes = Math.floor(frame / (fps * 60)) % 60;
+  const hours = Math.floor(frame / (fps * 3600)) % 24;
+  const pad = (num) => String(num).padStart(2, "0");
+  timecode.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}:${pad(fr)}`;
+}, 42);
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("is-visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: .12 });
+
+document.querySelectorAll(".reveal:not(.hero .reveal)").forEach((el) => revealObserver.observe(el));
+
+const scrollProgress = document.getElementById("scrollProgress");
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  scrollProgress.style.width = progress + "%";
+});
+</script>
+</body>
+</html>
